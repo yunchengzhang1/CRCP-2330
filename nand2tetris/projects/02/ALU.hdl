@@ -64,11 +64,20 @@ CHIP ALU {
 
    //if no == 1, !SA
    Not16 (in = SA, out = notSA);
-    
-   Mux16 (a = SA, b = notSA, sel = no, out = out);
 
+   Mux16 (a = SA, b = notSA, sel = no, out[0..7] = first8, out[8..15] = last8);
 
+   //zr: 1 if out == 0
+   //1 if both 8 bits are 0000 0000
+   Or8Way (in = first8, out = first);
+   Or8Way (in = last8 , out = last );
+   Or (a = first, b = last, out = notZero);
+   Not (in = notZero, out = zr);
 
+   //ng: if out is negative
+   //negative (1) if first 8 bits are 1111 1111
+   //true == 1
+   And(a = out[0], b = true, out = ng);
 
 
 }

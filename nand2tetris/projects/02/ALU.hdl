@@ -64,8 +64,10 @@ CHIP ALU {
 
    //if no == 1, !SA
    Not16 (in = SA, out = notSA);
+    
+   Mux16 (a = SA, b = notSA, sel = no, out = out);
 
-   //Mux16 (a = SA, b = notSA, sel = no, out =
+
 
 
 

@@ -68,7 +68,7 @@ CHIP ALU {
         //ng: if out is negative
                //negative (1) if first 8 bits are 1111 1111
                //true == 1
-       Mux16 (a = SA, b = notSA, sel = no, out[15] = ng, out[0..7] = firstHalf, out[8..15] = lastHalf);
+       Mux16 (a = SA, b = notSA, sel = no, out = out, out[15] = ng, out[0..7] = firstHalf, out[8..15] = lastHalf);
 
 
        //zr: 1 if out == 0

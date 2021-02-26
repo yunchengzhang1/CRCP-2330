@@ -44,40 +44,39 @@ CHIP ALU {
         ng; // 1 if (out < 0),  0 otherwise
 
     PARTS:
-   // Put you code here:
-   //use mux16, not16, then put them in another mux to decide whether do z or n
-   Mux16 (a = x, b = false, sel = zx, out = muxX);
-   Mux16 (a = y, b = false, sel = zy, out = muxY);
 
-   Not16 (in = muxX, out = notX);
-   Not16 (in = muxY, out = notY);
+    //Put you code here:
+       //use mux16, not16, then put them in another mux to decide whether do z or n
+       Mux16 (a = x, b[0..15] = false, sel = zx, out = xmux);
+       Not16 (in = xmux, out = xnot);
+       Mux16 (a = xmux, b = xnot, sel = nx, out = ZNx);
 
-   Mux16 (a = muxX, b = notX, sel = nx, out = ZNx);
-   Mux16 (a = muxY, b = notY, sel = ny, out = ZNy);
+       Mux16 (a = y, b[0..15] = false, sel = zy, out = ymux);
+       Not16 (in = ymux, out = ynot);
+       Mux16 (a = ymux, b = ynot, sel = ny, out = ZNy);
 
-   //if f == 1, out = x+y; if f == 0, out = x&y
-   Add16 (a = ZNx, b = ZNy, out = sum);
+       //if f == 1, out = x+y; if f == 0, out = x&y
+       Add16 (a = ZNx, b = ZNy, out = sum);
 
-   And16 (a = ZNx, b = ZNy, out = and);
+       And16 (a = ZNx, b = ZNy, out = and);
 
-   Mux16 (a = sum, b = and, sel = f, out = SA);
+       Mux16 (a = and, b = sum, sel = f, out = SA);
 
-   //if no == 1, !SA
-   Not16 (in = SA, out = notSA);
+       //if no == 1, !SA
+       Not16 (in = SA, out = notSA);
 
-   Mux16 (a = SA, b = notSA, sel = no, out[0] = firstD, out[0..7] = first8, out[8..15] = last8);
+        //ng: if out is negative
+               //negative (1) if first 8 bits are 1111 1111
+               //true == 1
+       Mux16 (a = SA, b = notSA, sel = no, out[15] = ng, out[0..7] = firstHalf, out[8..15] = lastHalf);
 
-   //zr: 1 if out == 0
-   //1 if both 8 bits are 0000 0000
-   Or8Way (in = first8, out = first);
-   Or8Way (in = last8 , out = last );
-   Or (a = first, b = last, out = notZero);
-   Not (in = notZero, out = zr);
 
-   //ng: if out is negative
-   //negative (1) if first 8 bits are 1111 1111
-   //true == 1
-   And(a = firstD, b = true, out = ng);
+       //zr: 1 if out == 0
+       //1 if both 8 bits are 0000 0000
+       Or8Way (in = firstHalf, out = first);
+       Or8Way (in = lastHalf , out = last );
+       Or (a = first, b = last, out = notZero);
+       Not (in = notZero, out = zr);
 
 
 }

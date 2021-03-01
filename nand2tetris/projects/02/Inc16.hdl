@@ -6,6 +6,7 @@
 /**
  * 16-bit incrementer:
  * out = in + 1 (arithmetic addition)
+ * equal to i++;
  */
 
 CHIP Inc16 {
@@ -14,4 +15,6 @@ CHIP Inc16 {
 
     PARTS:
    // Put you code here:
+   // inc 0000 0000 0000 0001
+   Add16(a = in, b[0]=true, b[1..15]=false,out=out);
 }

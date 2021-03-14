@@ -11,6 +11,8 @@
  * else                    out[t+1] = out[t]
  */
 
+ //jump to next location to memory/ jump to designated address/ output to data buses
+
 CHIP PC {
     IN in[16],load,inc,reset;
     OUT out[16];

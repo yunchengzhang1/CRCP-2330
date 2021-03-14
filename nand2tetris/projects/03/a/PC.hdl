@@ -24,10 +24,10 @@ CHIP PC {
     // Put your code here:
     // register output ++
     Inc16(in = regOut, out = incOut);
-    Mux16(a = regOut,  b = incOut, sel = inc,  out = inc_if);
-    Mux16(a = inc_if,  b = in,      sel = load, out = load_if);
-    Mux16(a = load_if, b = false,   sel = reset,out = reset_if);
+    Mux16(a = regOut,  b = incOut, sel = inc,  out = incIf);
+    Mux16(a = incIf,  b = in,      sel = load, out = loadIf);
+    Mux16(a = loadIf, b = false,   sel = reset,out = resetIf);
     //loop output from register
-    Register(in = reset_if, load = true, out = out, out = regOut);
+    Register(in = resetIf, load = true, out = out, out = regOut);
 
 }

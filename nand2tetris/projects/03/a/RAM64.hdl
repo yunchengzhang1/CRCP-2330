@@ -16,4 +16,9 @@ CHIP RAM64 {
 
     PARTS:
     // Put your code here:
+    //dmux 8 way with address 0 to 2
+    DMux8Way(in = load, sel = address[0..2], a = aa, b = bb, c = cc, d = dd, e = ee, f = ff, g = gg, h = hh);
+    //RAM8 8 times with address 3 to 5
+    
+    //mux 8 way 16
 }

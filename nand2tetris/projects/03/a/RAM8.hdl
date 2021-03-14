@@ -16,5 +16,9 @@ CHIP RAM8 {
 
     PARTS:
     // Put your code here:
+    // demux 8 way
+    
+    // 8 registers to match r0 - r7
 
+    //Mux 8 way output based on sel[3]
 }

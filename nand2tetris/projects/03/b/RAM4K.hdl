@@ -10,6 +10,8 @@
  * (the loaded value will be emitted to out from the next time step onward).
  */
 
+ // 512 * 8
+
 CHIP RAM4K {
     IN in[16], load, address[12];
     OUT out[16];

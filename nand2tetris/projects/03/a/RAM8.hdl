@@ -17,8 +17,16 @@ CHIP RAM8 {
     PARTS:
     // Put your code here:
     // demux 8 way
-    
+    DMux8Way(in = load, sel = address, a = 00, b = 01, c = 02, d = 03, e = 04, f = 05, g = 06, h = 07);
     // 8 registers to match r0 - r7
-
+    Register(in = in , load = 00 , out = r0);
+    Register(in = in , load = 01 , out = r1);
+    Register(in = in , load = 02 , out = r2);
+    Register(in = in , load = 03 , out = r3);
+    Register(in = in , load = 04 , out = r4);
+    Register(in = in , load = 05 , out = r5);
+    Register(in = in , load = 06 , out = r6);
+    Register(in = in , load = 07 , out = r7);
     //Mux 8 way output based on sel[3]
+    Mux8Way16(a = r0, b = r1, c = r2, d = r3, e = r4, f = r5, g = r6, h = r7, sel = address, out = out);
 }

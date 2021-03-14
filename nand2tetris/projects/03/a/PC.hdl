@@ -2,7 +2,7 @@
 // and the book "The Elements of Computing Systems"
 // by Nisan and Schocken, MIT Press.
 // File name: projects/03/a/PC.hdl
-
+// reference: http://nand2tetris-questions-and-answers-forum.32033.n3.nabble.com/PC-Hdl-td4026543.html
 /**
  * A 16-bit counter with load and reset control bits.
  * if      (reset[t] == 1) out[t+1] = 0
@@ -12,6 +12,9 @@
  */
 
  //jump to next location to memory/ jump to designated address/ output to data buses
+ // reset: fetch the first instruction PC = 0
+ // next: fetch the next instruction PC++
+ // goto: fetch instruction n PC = n
 
 CHIP PC {
     IN in[16],load,inc,reset;
@@ -19,4 +22,12 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    // register output ++
+    Inc16(in = regOut, out = incOut);
+    Mux16(a = regOut,  b = incOut, sel = inc,  out = inc_if);
+    Mux16(a = inc_if,  b = in,      sel = load, out = load_if);
+    Mux16(a = load_if, b = false,   sel = reset,out = reset_if);
+    //loop output from register
+    Register(in = reset_if, load = true, out = out, out = regOut);
+
 }

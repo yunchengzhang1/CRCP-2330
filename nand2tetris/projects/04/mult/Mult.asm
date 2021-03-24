@@ -12,9 +12,9 @@
 // Put your code here.
 	//set up r0 and r1
 	@R0
-	M=2		//R0 as the counter
+	M=0 	//R0 as the counter
 	@R1
-	M=5	
+	M=0	
 	
 (LOOP)
 	//if R0 the counter is 0, skip line 37 and go to END 

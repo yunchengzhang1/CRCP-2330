@@ -10,30 +10,32 @@
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
 // Put your code here.
-	//set up r0 and r1
-	@R0
-	M=0 	//R0 as the counter
 	@R1
-	M=0	
-	
+	D=M
+	@counter	//set counter to R1	
+	M=D	
+	@R2
+	M=0		//R2 TO 0
+
 (LOOP)
-	//if R0 the counter is 0, skip line 37 and go to END 
-	@R0
-	D=M     //D=R0
+	//if counter is 0,  go to END 
+	@counter
+	D=M     //D=counter
 	@END
 	D;JEQ
 
-	//increment R2 the result address with R1
-	@R1
-	D=M 	//D=R1
-	@R2
-	M=M+D 	//R2=R2+R1
-
-	//decrement R0 as the counter
+	//increment R2 the result address with R0
 	@R0
+	D=M 	//D=R0
+	@R2
+	M=D+M 	//R2=R2+R0
+
+	//decrement the counter
+	@counter
 	M=M-1   //R0=R0-1
 
 	//back to loop in any condition
+	@loop
 	0;JMP
 
 (END)

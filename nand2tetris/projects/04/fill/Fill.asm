@@ -12,3 +12,38 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
+(START)		//where to restart
+@SCREEN
+D=A
+@pixel //address of curr
+M=D
+
+(KBDLOOP)
+@KBD
+D=M
+
+
+(BLACK)		//fill screen with black
+
+
+(WHITE)		//fill screen with white
+
+
+(UPDATE)	//assign color to pixel
+
+
+@START		//restart
+0;JMP
+
+
+
+
+
+
+
+
+
+
+
+
+

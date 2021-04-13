@@ -29,12 +29,14 @@ CHIP Memory {
     PARTS:
     // Put your code here:
     // select from address 13 14, DMux4way
-
+    DMux4Way(in=load, sel=address[13..14], a=RLoad1, b=RLoad2, c=SLoad, d=KLoad);
+    Or(a=RLoad1, b=RLoad2, out=RLoad);
     // ram16k
-
+    RAM16K(in = in, load = RLoad, address = address[0...13], out = ROut);
     // use screen chip
-
+    Screen(in = in, load = SLoad, address = address[0..12], out = SOut);
     // keyboard
-
-    // Mux4way16
+    Keyboard(out=kOut);
+    // Mux4way16, address choose what to output
+    Mux4Way16(a = ROut, b = ROut, c = SOut, d = KOut, sel=address[13..14], out = out);
 }

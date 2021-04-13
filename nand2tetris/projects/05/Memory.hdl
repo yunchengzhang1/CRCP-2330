@@ -28,4 +28,13 @@ CHIP Memory {
 
     PARTS:
     // Put your code here:
+    // select from address 13 14, DMux4way
+
+    // ram16k
+
+    // use screen chip
+
+    // keyboard
+
+    // Mux4way16
 }

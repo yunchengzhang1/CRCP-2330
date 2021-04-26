@@ -14,4 +14,30 @@ class Player{
 	deallocate
 	return score
 	*/
+        method int roll() {
+		var int num;
+
+		let num = random.randRange(5) + 1;
+
+		if(num = 1){
+			let score = 0;
+		}
+
+		if(~(num = 1)){
+			let score = score + num;
+		}
+
+		return num;
+	}
+
+	method int getScore(){
+		return score;
+	}
+
+
+	method void dispose(){
+		do random.dispose();
+		do Memory.deAlloc(this);
+		return;
+	}
 }

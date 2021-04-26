@@ -1,0 +1,17 @@
+class Player{
+	field int score;
+	field Random random;
+
+	constructor Player new(){
+		let random = Random.new(0);
+		let score = 0;
+
+		return this;
+	}	
+
+	/*methods:
+	player action roll
+	deallocate
+	return score
+	*/
+}

@@ -1,0 +1,80 @@
+//https://en.wikipedia.org/wiki/Pig_(dice_game)
+
+class Main{
+	
+	function void main(){
+		//value needed
+		var Random random;
+
+		var Player user; 
+		var Player pig; 
+
+		var int userScore; 
+		var int pigScore; 
+
+		var char command; // user input
+
+		var int pigCnt;//pig roll counter
+
+		var boolean userGetZero;
+
+		//initialization
+		let random = Random.new(261);//give a seed
+
+		let user = Player.new();
+		let pig = Player.new();
+
+		let userScore = user.getScore();
+		let pigScore = pig.getScore();
+
+		let userGetZero = false;
+
+		/* game start */
+		//while no win condition has been met
+		while(~(userScore = 20) & ~(pigScore = 20)){ 
+		//if user had 0 last turn, pig plays
+		if(~userGetZero){
+				//display scores
+				do Output.printString("player score: ");
+				do Output.printInt(userScore);
+				do Output.printString("pig score: ");
+				do Output.printInt(pigScore);
+				do Output.println();
+				
+				//display instructions
+				do Output.printString("hold or roll? 'h' for hold and 'r' for roll:");
+				let command = Keyboard.readChar();
+				do Output.moveCursor(0,0);
+				do Screen.clearScreen();
+			}//end of if(~userGetZero)
+		//player hold if h or get 0 last turn
+
+		//player roll
+	
+			
+
+		}//end of while loop
+
+		//check winner
+		if(~(userScore < 20)){
+			
+			do Output.printString("You win!");
+
+		}
+
+		if(~(pigScore < 20)){
+			
+			do Output.printString("You lose, pig wins");
+
+		}
+
+		//delloc			
+		do user.dispose();
+		do pig.dispose();
+		return;
+
+	}
+
+		
+
+}

@@ -48,9 +48,46 @@ class Main{
 				do Screen.clearScreen();
 			}//end of if(~userGetZero)
 		//player hold if h or get 0 last turn
+				if((command = 72) | (userGetZero)){
+				
+				let pigCnt = random.randRange(5);
+				do user.changeRandom(pigCnt);
+				let userGetZero = false;
 
+				while(pigCnt > 0){
+
+					do Output.printString("Pig rolls : ");
+					do Output.printInt(pig.roll());
+					do Output.println();
+					let pigCnt = pigCnt - 1;
+
+				}
+				
+				do Output.printString("Now pig's score is : ");
+				let pigScore = pig.getScore();
+				do Output.printInt(pigScore);
+				do Output.println();
+
+			}
 		//player roll
-	
+				if(command = 82){
+				do Output.printString("You roll : ");
+				do Output.printInt(user.roll());
+				do Output.println();
+				do Output.printString("Now your score is : ");
+				let userScore = user.getScore();
+				do Output.printInt(userScore);
+				do Output.println();
+				do pig.changeRandom(1);
+
+				//user rolls a 0, pig should starts next turn
+				if(userScore = 0){
+					let userGetZero = true;
+					let command = 72;
+					do Output.printString("You roll a 0! Now it is pig's turn!");
+					do Output.println();
+				}
+			}
 			
 
 		}//end of while loop

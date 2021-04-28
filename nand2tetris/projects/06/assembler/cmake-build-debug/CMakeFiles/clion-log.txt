@@ -1,0 +1,4 @@
+C:\Users\AZ\AppData\Local\JetBrains\CLion2020.3\cygwin_cmake\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/cygdrive/a/2021 spring/NAND/CRCP-2330/nand2tetris/projects/06/assembler"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /cygdrive/a/2021 spring/NAND/CRCP-2330/nand2tetris/projects/06/assembler/cmake-build-debug

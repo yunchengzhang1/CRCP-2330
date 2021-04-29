@@ -97,8 +97,8 @@ public:
         }
 
         // We have to look ahead for commands, skipping comments and blank lines.
-        std::istream::streampos parsed_pos 	= f_.tellg(); // Saving stream state.
-        std::ios::iostate 		status 		= f_.rdstate();
+        istream::streampos parsed_pos 	= f_.tellg(); // Saving stream state.
+        ios::iostate 		status 		= f_.rdstate();
         f_.clear();
 
         bool res 					= false;

@@ -13,25 +13,25 @@ class Code {
 public:
 
 
-    uint16_t 	comp(const std::string&) const{
+    uint16_t 	comp(const std::string& s) const{
         if (opcodes_.count(s)){
             return opcodes_.at(s);
         }
     }
 
-    uint8_t 	dest(const std::string&) const{
+    uint8_t 	dest(const std::string& s) const{
         if (dests_.count(s)){
             return dests_.at(s);
         }
 }
 
-    uint8_t 	jump(const std::string&) const{
+    uint8_t 	jump(const std::string& s) const{
         if (jumps_.count(s)){
             return jumps_.at(s);
         }
 }
 
-    uint16_t 	immediate(const std::string&) const{
+    uint16_t 	immediate(const std::string& s) const{
         int immediate;
 
         try {

@@ -11,11 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df732281-3580-46a2-aa94-e455d3d2357b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assembler/assembler.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assembler/code.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assembler/parser.h" afterDir="false" />
-    </list>
+    <list default="true" id="df732281-3580-46a2-aa94-e455d3d2357b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619637481972</updated>
-      <workItem from="1619637483706" duration="1874000" />
+      <workItem from="1619637483706" duration="2737000" />
     </task>
     <servers />
   </component>

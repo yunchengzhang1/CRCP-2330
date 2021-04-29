@@ -71,7 +71,44 @@ public:
     }
 
     void translate(ostream& out) const{
+        Parser p(input_filename_);
+        Code c;
 
+        while (p.hasMoreCommands()) {
+            p.advance();
+            switch (p.commandType()) {
+                case A_COMMAND:
+                {
+                    // immediate / memory position
+                    string s = p.symbol();
+                    // symbol define
+                    bitset<16> addr;
+                    // number to immediate
+                    if (isdigit(s.front())) {
+                        addr = c.immediate(s);
+                    }
+                    else {
+                        // Reference to a variable
+                        assert(symbol_table_.count(s));
+                        addr = symbol_table_.at(s);
+                    }
+
+                    out << std::bitset<16>(addr) << std::endl;
+                    break;
+                }
+                case C_COMMAND:
+                {
+                    bitset<16> dest(c.dest(p.dest()));
+                    bitset<16> jump(c.jump(p.jump()));
+                    bitset<16> comp(c.comp(p.comp())); 
+                    bitset<16> instr(comp | dest | jump);
+                    out << instr << endl;
+                    break;
+                }
+                case L_COMMAND:
+                    break;
+            }
+        }
     }
 
 

@@ -11,7 +11,50 @@ using namespace std;
 class Code {
 
 public:
-//    front
+
+
+    uint16_t 	comp(const std::string&) const{
+        if (opcodes_.count(s)){
+            return opcodes_.at(s);
+        }
+    }
+
+    uint8_t 	dest(const std::string&) const{
+        if (dests_.count(s)){
+            return dests_.at(s);
+        }
+}
+
+    uint8_t 	jump(const std::string&) const{
+        if (jumps_.count(s)){
+            return jumps_.at(s);
+        }
+}
+
+    uint16_t 	immediate(const std::string&) const{
+        int immediate;
+
+        try {
+            immediate = stoi(s);
+        }
+        catch (std::out_of_range) {
+            cerr << "Error: " << s << " immediate out or range.";
+            cerr << std::endl;
+            throw std::runtime_error("Invalid immediate");
+        }
+
+        if (immediate < 0 || immediate > 32768) {
+            cerr << "Error: " << s << " immediate out of range.";
+            cerr << std::endl;
+            throw std::runtime_error("Invalid immediate");
+        }
+        uint16_t res = immediate;
+        return res;
+    }
+
+private:
+//    back
+    //    front
     Code():opcodes_({
                             // Comp. (a=0)
                             {"0",		0b1110101010000000},
@@ -68,32 +111,8 @@ public:
                   })
     {}
 
-    uint16_t 	comp(const std::string&) const{
-        if (opcodes_.count(s)){
-            return opcodes_.at(s);
-        }
-    }
+    unordered_map<string, uint8_t> jumps_;
 
-    uint8_t 	dest(const std::string&) const{
-        if (dests_.count(s)){
-            return dests_.at(s);
-        }
-}
-
-    uint8_t 	jump(const std::string&) const{
-        if (jumps_.count(s)){
-            return jumps_.at(s);
-        }
-}
-
-    uint16_t 	immediate(const std::string&) const;
-
-private:
-//    back
-    std::unordered_map<std::string, uint16_t> opcodes_;
-
-    std::unordered_map<std::string, uint8_t> jumps_;
-
-    std::unordered_map<std::string, uint8_t> dests_;
+    unordered_map<string, uint8_t> dests_;
 };
 #endif //INC_06_CODE_H
